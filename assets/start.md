@@ -20,6 +20,20 @@ docker run --name one-api -d --restart always \
 
 **注意**：默认用管理员账号登录，用户名root，密码123456，进去之后可以改密码
 
+<<<<<<< HEAD
+=======
+### 或者
+
+1. 直接使用第三方代理平台，如[云雾api](https://yunwu.ai/)等，使用方法同one-api，`.env`中api-key写中转站给你的key，url写中转站的url
+
+2. 使用更先进的[new-api](https://github.com/QuantumNous/new-api)，使用方法基本同one-api
+
+```bash
+# 使用SQLite部署new-api
+docker run --name new-api -d --restart always -p 3000:3000 -e TZ=Asia/Shanghai -v /home/ubuntu/data/new-api:/data calciumion/new-api:latest
+```
+
+>>>>>>> 4296b7c (Update start.md)
 
 ## Neo4j 启动
 
@@ -56,6 +70,7 @@ pywin32>=302
 textract==1.6.3  # Windows 无需安装
 ```
 
+<<<<<<< HEAD
 ## .env 配置
 
 在项目根目录下创建 `.env` 文件，示例如下：
@@ -85,6 +100,199 @@ LANGSMITH_PROJECT="项目名称"
 ```
 
 **注意**：全流程测试通过的只有deepseek（20241226版本）以及gpt-4o，剩下的模型，比如deepseek（20250324版本）幻觉问题比较严重，有概率不遵循提示词，导致抽取实体失败；Qwen的模型可以抽取实体，但是好像不支持langchain/langgraph，所以问答的时候有概率报错，他们有自己的agent实现[Qwen-Agent](https://qwen.readthedocs.io/zh-cn/latest/framework/qwen_agent.html)
+=======
+如果遇到报错：`OSError: [WinError 1114] 动态链接库(DLL)初始化例程失败。 Error loading "D:\anaconda\envs\graphrag\lib\site-packages\torch\lib\c10.dll" or one of its dependencies.` 是因为下载了torch2.9.0版本，遇到此问题请手动降级torch，比如`pip install torch==2.8.0`即可。
+
+## 环境变量配置 (.env)
+
+### 配置说明
+
+项目配置已统一至 `.env` 文件，除知识图谱实体/关系模式外，所有运行参数均可通过环境变量覆盖。请在项目根目录创建 `.env` 文件进行配置。
+
+### 必选配置项
+
+以下配置为必填项，项目无法运行时需首先检查这些配置：
+
+```env
+# ===== LLM 模型配置 =====
+OPENAI_API_KEY = 'sk-xxx'
+OPENAI_BASE_URL = 'http://localhost:13000/v1'
+OPENAI_EMBEDDINGS_MODEL = 'text-embedding-3-large'
+OPENAI_LLM_MODEL = 'gpt-4o'
+
+# ===== Neo4j 数据库配置 =====
+NEO4J_URI = 'neo4j://localhost:7687'
+NEO4J_USERNAME = 'neo4j'
+NEO4J_PASSWORD = '12345678'
+```
+
+### 推荐修改配置项
+
+以下配置根据实际使用场景建议调整：
+
+```env
+# ===== 缓存向量模型配置 =====
+# 推荐使用第三方embedding模型api，省事。以下是需要下载的配置
+CACHE_EMBEDDING_PROVIDER = 'sentence_transformer'
+CACHE_SENTENCE_TRANSFORMER_MODEL = 'all-MiniLM-L6-v2'
+
+# ===== 并发与性能配置 =====
+# 根据机器性能调整，4核CPU推荐值如下
+FASTAPI_WORKERS = 2
+MAX_WORKERS = 4
+MA_WORKER_EXECUTION_MODE = 'parallel'
+MA_WORKER_MAX_CONCURRENCY = 4
+BATCH_SIZE = 100
+
+# ===== GDS 内存配置 =====
+# 根据服务器内存调整，单位 GB
+GDS_MEMORY_LIMIT = 6
+
+# ===== 文本处理参数 =====
+# 根据文档特性调整分块大小
+CHUNK_SIZE = 500
+CHUNK_OVERLAP = 100
+```
+
+### 默认即可配置项
+
+以下配置一般无需修改，保持默认值即可：
+
+```env
+# ===== LLM 生成参数 =====
+TEMPERATURE = 0
+MAX_TOKENS = 2000
+VERBOSE = True
+
+# ===== 文本处理 =====
+MAX_TEXT_LENGTH = 500000
+SIMILARITY_THRESHOLD = 0.9
+RESPONSE_TYPE = '多个段落'
+
+# ===== 批处理大小 =====
+ENTITY_BATCH_SIZE = 50
+CHUNK_BATCH_SIZE = 100
+EMBEDDING_BATCH_SIZE = 64
+LLM_BATCH_SIZE = 5
+COMMUNITY_BATCH_SIZE = 50
+
+# ===== GDS 运行参数 =====
+GDS_CONCURRENCY = 4
+GDS_NODE_COUNT_LIMIT = 50000
+GDS_TIMEOUT_SECONDS = 300
+
+# ===== 实体消歧配置 =====
+DISAMBIG_STRING_THRESHOLD = 0.7
+DISAMBIG_VECTOR_THRESHOLD = 0.85
+DISAMBIG_NIL_THRESHOLD = 0.6
+DISAMBIG_TOP_K = 5
+ALIGNMENT_CONFLICT_THRESHOLD = 0.5
+ALIGNMENT_MIN_GROUP_SIZE = 2
+
+# ===== Neo4j 连接池 =====
+NEO4J_MAX_POOL_SIZE = 10
+NEO4J_REFRESH_SCHEMA = false
+
+# ===== 缓存系统配置 =====
+MODEL_CACHE_ROOT = './cache'
+CACHE_ROOT = './cache'
+CACHE_DIR = './cache'
+CACHE_MEMORY_ONLY = false
+CACHE_MAX_MEMORY_SIZE = 100
+CACHE_MAX_DISK_SIZE = 1000
+CACHE_THREAD_SAFE = true
+CACHE_ENABLE_VECTOR_SIMILARITY = true
+CACHE_SIMILARITY_THRESHOLD = 0.9
+CACHE_MAX_VECTORS = 10000
+
+# ===== 相似实体检测 =====
+SIMILAR_ENTITY_WORD_EDIT_DISTANCE = 3
+SIMILAR_ENTITY_BATCH_SIZE = 500
+SIMILAR_ENTITY_MEMORY_LIMIT = 6
+SIMILAR_ENTITY_TOP_K = 10
+
+# ===== 搜索工具参数 =====
+SEARCH_CACHE_MEMORY_SIZE = 200
+SEARCH_VECTOR_LIMIT = 5
+SEARCH_TEXT_LIMIT = 5
+SEARCH_SEMANTIC_TOP_K = 5
+SEARCH_RELEVANCE_TOP_K = 5
+NAIVE_SEARCH_TOP_K = 3
+
+LOCAL_SEARCH_TOP_CHUNKS = 3
+LOCAL_SEARCH_TOP_COMMUNITIES = 3
+LOCAL_SEARCH_TOP_OUTSIDE_RELS = 10
+LOCAL_SEARCH_TOP_INSIDE_RELS = 10
+LOCAL_SEARCH_TOP_ENTITIES = 10
+LOCAL_SEARCH_INDEX_NAME = 'vector'
+
+GLOBAL_SEARCH_LEVEL = 0
+GLOBAL_SEARCH_BATCH_SIZE = 5
+
+HYBRID_SEARCH_ENTITY_LIMIT = 15
+HYBRID_SEARCH_MAX_HOP = 2
+HYBRID_SEARCH_TOP_COMMUNITIES = 3
+HYBRID_SEARCH_BATCH_SIZE = 10
+HYBRID_SEARCH_COMMUNITY_LEVEL = 0
+
+# ===== Server 运行参数 =====
+SERVER_HOST = '0.0.0.0'
+SERVER_PORT = 8000
+SERVER_RELOAD = false
+SERVER_LOG_LEVEL = 'info'
+SERVER_WORKERS = 2
+
+# ===== 前端运行参数 =====
+FRONTEND_API_URL = 'http://localhost:8000'
+FRONTEND_DEFAULT_AGENT = 'naive_rag_agent'
+FRONTEND_DEFAULT_DEBUG = false
+FRONTEND_SHOW_THINKING = true
+FRONTEND_USE_DEEPER_TOOL = true
+FRONTEND_USE_STREAM = true
+FRONTEND_USE_CHAIN_EXPLORATION = true
+
+# ===== 知识图谱可视化参数 =====
+KG_PHYSICS_ENABLED = true
+KG_NODE_SIZE = 25
+KG_EDGE_WIDTH = 2
+KG_SPRING_LENGTH = 150
+KG_GRAVITY = -5000
+
+# ===== Agent 参数 =====
+AGENT_RECURSION_LIMIT = 5
+AGENT_CHUNK_SIZE = 4
+AGENT_STREAM_FLUSH_THRESHOLD = 40
+DEEP_AGENT_STREAM_FLUSH_THRESHOLD = 80
+FUSION_AGENT_STREAM_FLUSH_THRESHOLD = 60
+```
+
+### 可选配置项
+
+以下配置为可选功能，不需要可以不配置或注释掉：
+
+```env
+# ===== LangSmith 监控（可选）=====
+# 不需要可以完全注释掉此部分
+LANGSMITH_TRACING = true
+LANGSMITH_ENDPOINT = "https://api.smith.langchain.com"
+LANGSMITH_API_KEY = "xxx"
+LANGSMITH_PROJECT = "xxx"
+```
+
+### 配置模板获取
+
+完整配置模板请参考项目根目录的 `.env.example` 文件，可直接复制重命名为 `.env` 后修改。
+
+### 模型兼容性说明
+
+全流程测试通过的模型：
+- DeepSeek (20241226版本)
+- GPT-4o
+
+已知问题模型：
+- DeepSeek (20250324版本)：幻觉问题严重，可能导致实体抽取失败
+- Qwen 系列：可以抽取实体，但与 LangChain/LangGraph 兼容性存在问题，建议使用其官方 [Qwen-Agent](https://qwen.readthedocs.io/zh-cn/latest/framework/qwen_agent.html) 框架
+>>>>>>> 4296b7c (Update start.md)
 
 ## 项目初始化
 
@@ -107,6 +315,7 @@ pip install -e .
 - YAML/YML（配置文件）
 ```
 
+<<<<<<< HEAD
 ## 知识图谱配置（`config/settings.py`）
 
 ```python
@@ -152,6 +361,49 @@ GDS_TIMEOUT_SECONDS = 300      # GDS超时时间(秒)
 
 # 索引和社区检测配置
 COMMUNITY_BATCH_SIZE = 50      # 社区处理批次大小
+=======
+## 知识图谱实体与关系配置
+
+除环境变量配置外，知识图谱的实体类型和关系类型需要在代码中配置。
+
+编辑 `graphrag_agent/config/settings.py`：
+
+```python
+# 知识图谱主题
+theme = "华东理工大学学生管理"
+
+# 实体类型定义
+entity_types = [
+    "学生类型",
+    "奖学金类型",
+    "处分类型",
+    "部门",
+    "学生职责",
+    "管理规定",
+]
+
+# 关系类型定义
+relationship_types = [
+    "申请",
+    "评定",
+    "撤销",
+    "负责",
+    "担任",
+    "管理",
+    "权利义务",
+    "互斥",
+]
+
+# 冲突解决策略（也可通过环境变量 GRAPH_CONFLICT_STRATEGY 覆盖）
+# manual_first: 优先保留手动编辑
+# auto_first: 优先自动更新
+# merge: 尝试合并
+conflict_strategy = "manual_first"
+
+# 社区检测算法（也可通过环境变量 GRAPH_COMMUNITY_ALGORITHM 覆盖）
+# leiden / sllpa （sllpa如果发现不了社区，建议换成leiden）
+community_algorithm = "leiden"
+>>>>>>> 4296b7c (Update start.md)
 ```
 
 ## 构建知识图谱
@@ -160,6 +412,7 @@ COMMUNITY_BATCH_SIZE = 50      # 社区处理批次大小
 cd graph-rag-agent/
 
 # 初始全量构建
+<<<<<<< HEAD
 python build/main.py
 
 # 单次变量（增量、减量）构建：
@@ -167,6 +420,15 @@ python build/incremental_update.py --once
 
 # 后台守护进程，定期变量更新：
 python build/incremental_update.py --daemon
+=======
+python graphrag_agent/integrations/build/main.py
+
+# 单次变量（增量、减量）构建：
+python graphrag_agent/integrations/build/incremental_update.py --once
+
+# 后台守护进程，定期变量更新：
+python graphrag_agent/integrations/build/incremental_update.py --daemon
+>>>>>>> 4296b7c (Update start.md)
 ```
 
 **注意：** `main.py`是构建的全流程，如果需要单独跑某个流程，请先完成实体索引的构建，再进行 chunk 索引构建，否则会报错（chunk 索引依赖实体索引）。
@@ -188,6 +450,7 @@ python search_with_stream.py
 ## 知识图谱评估
 
 ```bash
+<<<<<<< HEAD
 cd evaluator/test
 # 查看对应 README 获取更多信息
 ```
@@ -211,6 +474,34 @@ examples = [
 # FastAPI 的并发进程数设置
 workers = 2
 ```
+=======
+cd graphrag_agent/evaluation/test
+# 查看对应 README 获取更多信息
+```
+
+## 前端示例问题配置
+
+编辑 `graphrag_agent/config/settings.py` 中的 `examples` 字段：
+
+```python
+examples = [
+    "旷课多少学时会被退学？",
+    "国家奖学金和国家励志奖学金互斥吗？",
+    "优秀学生要怎么申请？",
+    "那上海市奖学金呢？"
+]
+```
+
+## 配置体系说明
+
+项目配置分为三层：
+
+1. `.env` 文件：所有运行时参数、密钥、性能调优参数
+2. `graphrag_agent/config/settings.py`：知识图谱结构配置（实体/关系类型、示例问题等）
+3. `server/server_config/settings.py` 和 `frontend/frontend_config/settings.py`：自动继承上层配置
+
+大部分配置可通过 `.env` 直接控制，无需修改代码。
+>>>>>>> 4296b7c (Update start.md)
 
 ## 深度搜索优化（建议禁用前端超时）
 

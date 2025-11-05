@@ -1,9 +1,16 @@
 import uvicorn
 from fastapi import FastAPI
+<<<<<<< HEAD
 from server.routers import api_router
 from server.server_config.database import get_db_manager
 from server.services.agent_service import agent_manager
 from config.settings import workers
+=======
+from routers import api_router
+from server_config.database import get_db_manager
+from server_config.settings import UVICORN_CONFIG
+from services.agent_service import agent_manager
+>>>>>>> 4296b7c (Update start.md)
 
 # 初始化 FastAPI 应用
 app = FastAPI(title="知识图谱问答系统", description="基于知识图谱的智能问答系统后端API")
@@ -16,12 +23,15 @@ db_manager = get_db_manager()
 driver = db_manager.driver
 
 
+<<<<<<< HEAD
 @app.get("/health")
 async def health_check():
     """健康检查端点"""
     return {"status": "healthy", "message": "Deep Search API is running"}
 
 
+=======
+>>>>>>> 4296b7c (Update start.md)
 @app.on_event("shutdown")
 def shutdown_event():
     """应用关闭时清理资源"""
@@ -36,4 +46,8 @@ def shutdown_event():
 
 # 启动服务器
 if __name__ == "__main__":
+<<<<<<< HEAD
     uvicorn.run("main:app", host="0.0.0.0", port=8000, workers=workers)
+=======
+    uvicorn.run("main:app", **UVICORN_CONFIG)
+>>>>>>> 4296b7c (Update start.md)

@@ -1,6 +1,18 @@
 import streamlit as st
 import uuid
+<<<<<<< HEAD
 from frontend_config.settings import DEFAULT_KG_SETTINGS
+=======
+from frontend_config.settings import (
+    DEFAULT_KG_SETTINGS,
+    DEFAULT_AGENT_TYPE,
+    DEFAULT_DEBUG_MODE,
+    DEFAULT_SHOW_THINKING,
+    DEFAULT_USE_DEEPER_TOOL,
+    DEFAULT_USE_STREAM,
+    DEFAULT_CHAIN_EXPLORATION,
+)
+>>>>>>> 4296b7c (Update start.md)
 
 def init_session_state():
     """初始化会话状态变量"""
@@ -9,6 +21,7 @@ def init_session_state():
     if 'messages' not in st.session_state:
         st.session_state.messages = []
     if 'debug_mode' not in st.session_state:
+<<<<<<< HEAD
         st.session_state.debug_mode = False
     if 'execution_log' not in st.session_state:
         st.session_state.execution_log = []
@@ -23,6 +36,22 @@ def init_session_state():
     if 'use_stream' not in st.session_state:
         st.session_state.use_stream = True
     elif st.session_state.debug_mode:
+=======
+        st.session_state.debug_mode = DEFAULT_DEBUG_MODE
+    if 'execution_log' not in st.session_state:
+        st.session_state.execution_log = []
+    if 'agent_type' not in st.session_state:
+        st.session_state.agent_type = DEFAULT_AGENT_TYPE
+    if 'show_thinking' not in st.session_state:
+        st.session_state.show_thinking = DEFAULT_SHOW_THINKING
+    if 'use_deeper_tool' not in st.session_state:
+        st.session_state.use_deeper_tool = DEFAULT_USE_DEEPER_TOOL
+    
+    # 流式响应设置 - 默认启用，但调试模式下自动禁用
+    if 'use_stream' not in st.session_state:
+        st.session_state.use_stream = DEFAULT_USE_STREAM
+    if st.session_state.debug_mode:
+>>>>>>> 4296b7c (Update start.md)
         # 确保调试模式下禁用流式响应
         st.session_state.use_stream = False
         
@@ -51,7 +80,11 @@ def init_session_state():
     if 'relation_to_update' not in st.session_state:
         st.session_state.relation_to_update = None
     if 'use_chain_exploration' not in st.session_state:
+<<<<<<< HEAD
         st.session_state.use_chain_exploration = True
+=======
+        st.session_state.use_chain_exploration = DEFAULT_CHAIN_EXPLORATION
+>>>>>>> 4296b7c (Update start.md)
 
     if 'cache' not in st.session_state:
         st.session_state.cache = {
@@ -59,4 +92,8 @@ def init_session_state():
             'knowledge_graphs': {},  # 知识图谱缓存
             'vector_search_results': {},  # 向量搜索结果缓存
             'api_responses': {},  # API响应缓存
+<<<<<<< HEAD
         }
+=======
+        }
+>>>>>>> 4296b7c (Update start.md)
