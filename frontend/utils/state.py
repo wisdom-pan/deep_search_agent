@@ -1,8 +1,11 @@
 import streamlit as st
 import uuid
 <<<<<<< HEAD
+<<<<<<< HEAD
 from frontend_config.settings import DEFAULT_KG_SETTINGS
 =======
+=======
+>>>>>>> 4296b7c (Update start.md)
 from frontend_config.settings import (
     DEFAULT_KG_SETTINGS,
     DEFAULT_AGENT_TYPE,
@@ -12,6 +15,9 @@ from frontend_config.settings import (
     DEFAULT_USE_STREAM,
     DEFAULT_CHAIN_EXPLORATION,
 )
+<<<<<<< HEAD
+>>>>>>> 4296b7c (Update start.md)
+=======
 >>>>>>> 4296b7c (Update start.md)
 
 def init_session_state():
@@ -21,6 +27,7 @@ def init_session_state():
     if 'messages' not in st.session_state:
         st.session_state.messages = []
     if 'debug_mode' not in st.session_state:
+<<<<<<< HEAD
 <<<<<<< HEAD
         st.session_state.debug_mode = False
     if 'execution_log' not in st.session_state:
@@ -37,6 +44,8 @@ def init_session_state():
         st.session_state.use_stream = True
     elif st.session_state.debug_mode:
 =======
+=======
+>>>>>>> 4296b7c (Update start.md)
         st.session_state.debug_mode = DEFAULT_DEBUG_MODE
     if 'execution_log' not in st.session_state:
         st.session_state.execution_log = []
@@ -51,6 +60,9 @@ def init_session_state():
     if 'use_stream' not in st.session_state:
         st.session_state.use_stream = DEFAULT_USE_STREAM
     if st.session_state.debug_mode:
+<<<<<<< HEAD
+>>>>>>> 4296b7c (Update start.md)
+=======
 >>>>>>> 4296b7c (Update start.md)
         # 确保调试模式下禁用流式响应
         st.session_state.use_stream = False
@@ -81,7 +93,11 @@ def init_session_state():
         st.session_state.relation_to_update = None
     if 'use_chain_exploration' not in st.session_state:
 <<<<<<< HEAD
+<<<<<<< HEAD
         st.session_state.use_chain_exploration = True
+=======
+        st.session_state.use_chain_exploration = DEFAULT_CHAIN_EXPLORATION
+>>>>>>> 4296b7c (Update start.md)
 =======
         st.session_state.use_chain_exploration = DEFAULT_CHAIN_EXPLORATION
 >>>>>>> 4296b7c (Update start.md)
@@ -93,7 +109,11 @@ def init_session_state():
             'vector_search_results': {},  # 向量搜索结果缓存
             'api_responses': {},  # API响应缓存
 <<<<<<< HEAD
+<<<<<<< HEAD
         }
+=======
+        }
+>>>>>>> 4296b7c (Update start.md)
 =======
         }
 >>>>>>> 4296b7c (Update start.md)

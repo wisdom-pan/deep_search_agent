@@ -1,17 +1,10 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import StreamingResponse
 import json
-<<<<<<< HEAD
-from server.models.schemas import ChatRequest, ChatResponse, ClearRequest, ClearResponse
-from server.services.chat_service import process_chat, process_chat_stream
-from server.services.agent_service import agent_manager, format_execution_log
-from server.utils.performance import measure_performance
-=======
 from models.schemas import ChatRequest, ChatResponse, ClearRequest, ClearResponse
 from services.chat_service import process_chat, process_chat_stream
 from services.agent_service import agent_manager, format_execution_log
 from utils.performance import measure_performance
->>>>>>> 4296b7c (Update start.md)
 
 # 创建路由器
 router = APIRouter()

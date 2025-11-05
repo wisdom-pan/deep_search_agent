@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-from config.settings import examples as eg
-
-# API服务器地址
-API_URL = "http://backend:8000"
-
-# 示例问题
-examples = eg
-
-# 知识图谱颜色方案
-=======
 import os
 
 from dotenv import load_dotenv
@@ -53,7 +42,6 @@ examples = eg
 
 # ===== 知识图谱展示参数 =====
 
->>>>>>> 4296b7c (Update start.md)
 KG_COLOR_PALETTE = [
     "#4285F4",  # 谷歌蓝
     "#EA4335",  # 谷歌红
@@ -67,14 +55,8 @@ KG_COLOR_PALETTE = [
     "#C2185B"   # 粉色
 ]
 
-<<<<<<< HEAD
-# 特殊节点类型的颜色映射
-NODE_TYPE_COLORS = {
-    "Center": "#F0B2F4",     # 中心/源节点 -紫色
-=======
 NODE_TYPE_COLORS = {
     "Center": "#F0B2F4",     # 中心/源节点 - 紫色
->>>>>>> 4296b7c (Update start.md)
     "Source": "#4285F4",     # 源节点 - 蓝色
     "Target": "#EA4335",     # 目标节点 - 红色
     "Common": "#34A853",     # 共同邻居 - 绿色
@@ -82,16 +64,6 @@ NODE_TYPE_COLORS = {
     "Level2": "#FF6D00",     # 二级关联 - 橙色
 }
 
-<<<<<<< HEAD
-# 知识图谱默认设置
-DEFAULT_KG_SETTINGS = {
-    "physics_enabled": True,
-    "node_size": 25,
-    "edge_width": 2,
-    "spring_length": 150,
-    "gravity": -5000
-}
-=======
 DEFAULT_KG_SETTINGS = {
     "physics_enabled": _get_env_bool("KG_PHYSICS_ENABLED", True),
     "node_size": _get_env_int("KG_NODE_SIZE", 25),
@@ -99,4 +71,3 @@ DEFAULT_KG_SETTINGS = {
     "spring_length": _get_env_int("KG_SPRING_LENGTH", 150),
     "gravity": _get_env_int("KG_GRAVITY", -5000),
 }
->>>>>>> 4296b7c (Update start.md)

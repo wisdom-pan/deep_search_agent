@@ -1,15 +1,9 @@
 from fastapi import APIRouter, HTTPException
 from typing import Optional
 import traceback
-<<<<<<< HEAD
-from server.services.kg_service import (
-    get_knowledge_graph,
-    extract_kg_from_message,
-=======
 from services.kg_service import (
     get_knowledge_graph, 
     extract_kg_from_message, 
->>>>>>> 4296b7c (Update start.md)
     get_chunks,
     get_shortest_path,
     get_one_two_hop_paths,
@@ -19,13 +13,8 @@ from services.kg_service import (
     get_entity_influence,
     get_simplified_community,
 )
-<<<<<<< HEAD
-from server.server_config.database import get_db_manager
-from server.models.schemas import (ReasoningRequest, EntityData, EntityDeleteData, EntitySearchFilter, EntityUpdateData,
-=======
 from server_config.database import get_db_manager
 from models.schemas import (ReasoningRequest, EntityData, EntityDeleteData, EntitySearchFilter, EntityUpdateData,
->>>>>>> 4296b7c (Update start.md)
                             RelationData, RelationDeleteData, RelationSearchFilter, RelationUpdateData)
 
 # 创建路由器

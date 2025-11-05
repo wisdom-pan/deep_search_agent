@@ -6,15 +6,9 @@ from fastapi import HTTPException
 import json
 import asyncio
 
-<<<<<<< HEAD
-from server.services.agent_service import agent_manager
-from server.services.kg_service import extract_kg_from_message
-from server.utils.concurrent import chat_manager, feedback_manager
-=======
 from services.agent_service import agent_manager
 from services.kg_service import extract_kg_from_message
 from utils.concurrent import chat_manager, feedback_manager
->>>>>>> 4296b7c (Update start.md)
 
 
 async def process_chat(message: str, session_id: str, debug: bool = False, agent_type: str = "hybrid_agent", 
@@ -83,27 +77,14 @@ async def process_chat(message: str, session_id: str, debug: bool = False, agent
                         except:
                             kg_data = {"nodes": [], "links": []}
                         
-<<<<<<< HEAD
-                    # 确保answer是字符串类型
-                    answer = fast_result if isinstance(fast_result, str) else str(fast_result)
-                    return {
-                        "answer": answer,
-=======
                     return {
                         "answer": fast_result,
->>>>>>> 4296b7c (Update start.md)
                         "execution_log": mock_log,
                         "kg_data": kg_data
                     }
                 else:
-<<<<<<< HEAD
-                    # 标准模式直接返回答案 - 确保answer是字符串
-                    answer = fast_result if isinstance(fast_result, str) else str(fast_result)
-                    return {"answer": answer}
-=======
                     # 标准模式直接返回答案
                     return {"answer": fast_result}
->>>>>>> 4296b7c (Update start.md)
         except Exception as e:
             # 快速路径失败，继续常规流程
             print(f"快速路径检查失败: {e}")
@@ -150,12 +131,6 @@ async def process_chat(message: str, session_id: str, debug: bool = False, agent
                 print(f"执行日志数量: {logs_count}条")
                 
                 # 构建完整响应，包含执行日志
-<<<<<<< HEAD
-                # 确保answer是字符串类型
-                if not isinstance(answer_content, str):
-                    answer_content = str(answer_content)
-=======
->>>>>>> 4296b7c (Update start.md)
                 return {
                     "answer": answer_content,
                     "execution_log": execution_log,
@@ -174,20 +149,9 @@ async def process_chat(message: str, session_id: str, debug: bool = False, agent
                 
                 # 从结果中提取知识图谱数据
                 kg_data = extract_kg_from_message(result["answer"])
-<<<<<<< HEAD
-
-                # 确保answer是字符串类型
-                answer = result["answer"]
-                if not isinstance(answer, str):
-                    answer = str(answer)
-
-                return {
-                    "answer": answer,
-=======
                 
                 return {
                     "answer": result["answer"],
->>>>>>> 4296b7c (Update start.md)
                     "execution_log": result["execution_log"],
                     "kg_data": kg_data,
                 }
@@ -201,15 +165,7 @@ async def process_chat(message: str, session_id: str, debug: bool = False, agent
                 thinking_process = result.get("thinking_process", "")
                 answer_content = result.get("answer", "")
                 execution_logs = result.get("execution_logs", [])
-<<<<<<< HEAD
-
-                # 确保answer是字符串类型
-                if not isinstance(answer_content, str):
-                    answer_content = str(answer_content)
-
-=======
                 
->>>>>>> 4296b7c (Update start.md)
                 # 返回思考过程、答案和执行日志
                 return {
                     "answer": answer_content,
@@ -228,18 +184,9 @@ async def process_chat(message: str, session_id: str, debug: bool = False, agent
                 else:
                     # 其他Agent类型不支持show_thinking参数
                     answer = selected_agent.ask(
-<<<<<<< HEAD
-                        message,
-                        thread_id=session_id
-                    )
-                # 确保answer是字符串类型
-                if not isinstance(answer, str):
-                    answer = str(answer)
-=======
                         message, 
                         thread_id=session_id
                     )
->>>>>>> 4296b7c (Update start.md)
                 return {"answer": answer}
     except Exception as e:
         print(f"处理聊天请求时出错: {str(e)}")
@@ -328,47 +275,13 @@ async def process_chat_stream(
             # 获取思考过程的流处理
             thinking_step = False
             thinking_content = ""
-<<<<<<< HEAD
-
-            # 检查是否使用增强版工具
-            use_enhanced = getattr(selected_agent, 'use_enhanced_tool', False)
-
-=======
             
->>>>>>> 4296b7c (Update start.md)
             async for chunk in selected_agent.ask_stream(message, thread_id=session_id):
                 if isinstance(chunk, dict):
                     # 字典形式包含状态信息
                     if "execution_log" in chunk and debug:
                         execution_log.append(chunk["execution_log"])
                         yield {"execution_log": chunk["execution_log"]}
-<<<<<<< HEAD
-                    elif "type" in chunk:
-                        # 增强版工具的进度状态
-                        chunk_type = chunk.get("type")
-                        if chunk_type == "progress":
-                            # 进度更新
-                            yield {
-                                "status": "progress",
-                                "stage": chunk.get("stage"),
-                                "progress": chunk.get("progress"),
-                                "message": chunk.get("message")
-                            }
-                        elif chunk_type == "content":
-                            # 内容更新
-                            yield {"status": "token", "content": chunk.get("content")}
-                        elif chunk_type == "complete":
-                            # 完成状态
-                            yield {
-                                "status": "done",
-                                "stage": chunk.get("stage"),
-                                "progress": chunk.get("progress"),
-                                "message": chunk.get("message")
-                            }
-                        else:
-                            yield chunk
-=======
->>>>>>> 4296b7c (Update start.md)
                     else:
                         yield chunk
                 elif "[深度研究]" in chunk or "[KB检索]" in chunk:
@@ -381,21 +294,12 @@ async def process_chat_stream(
                     if thinking_step:
                         thinking_step = False
                         yield json.dumps({"status": "answer_start"})
-<<<<<<< HEAD
-
-                    yield json.dumps({"status": "token", "content": chunk})
-
-            # 发送完成消息
-            yield json.dumps({"status": "done", "thinking_content": thinking_content})
-
-=======
                     
                     yield json.dumps({"status": "token", "content": chunk})
             
             # 发送完成消息
             yield json.dumps({"status": "done", "thinking_content": thinking_content})
             
->>>>>>> 4296b7c (Update start.md)
             return
         
         # 对于其他Agent类型，使用标准流式处理

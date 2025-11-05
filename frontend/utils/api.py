@@ -10,7 +10,11 @@ from typing import Dict, Callable
 from frontend_config.settings import API_URL
 from utils.performance import monitor_performance
 <<<<<<< HEAD
+<<<<<<< HEAD
 from config.settings import community_algorithm
+=======
+from graphrag_agent.config.settings import community_algorithm
+>>>>>>> 4296b7c (Update start.md)
 =======
 from graphrag_agent.config.settings import community_algorithm
 >>>>>>> 4296b7c (Update start.md)
