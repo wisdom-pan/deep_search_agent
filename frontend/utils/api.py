@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import time
 import uuid
 import requests
@@ -780,3 +781,6 @@ def get_content_async(chunk_id, callback):
 def shutdown_batch_processor():
     if 'api_batch_processor' in st.session_state:
         st.session_state.api_batch_processor.shutdown()
+=======
+from graphrag_agent.config.settings import community_algorithm
+>>>>>>> 6a74cbb (解决模块冲突问题)

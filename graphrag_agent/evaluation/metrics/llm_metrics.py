@@ -25,7 +25,6 @@ class ResponseCoherence(BaseMetric):
         Returns:
             Tuple[Dict[str, float], List[float]]: 总体得分和每个样本的得分
         """
-        self.log("\n======== ResponseCoherence 计算日志 ========")
         self.log(f"样本总数: {len(data.samples) if hasattr(data, 'samples') else 0}")
         
         if not self.llm:
@@ -105,7 +104,6 @@ class ResponseCoherence(BaseMetric):
         self.log(f"高分样本(>0.7)数量: {sum(1 for s in coherence_scores if s > 0.7)}")
         self.log(f"低分样本(<0.4)数量: {sum(1 for s in coherence_scores if s < 0.4)}")
         self.log(f"回答连贯性平均得分: {avg_coherence:.4f}")
-        self.log("======== ResponseCoherence 计算结束 ========\n")
         
         return {"response_coherence": avg_coherence}, coherence_scores
 
@@ -125,7 +123,6 @@ class FactualConsistency(BaseMetric):
         """
         计算事实一致性
         """
-        self.log("\n======== FactualConsistency 计算日志 ========")
         self.log(f"样本总数: {len(data.samples) if hasattr(data, 'samples') else 0}")
         
         if not self.llm:
@@ -226,7 +223,6 @@ class FactualConsistency(BaseMetric):
         self.log(f"高分样本(>0.7)数量: {sum(1 for s in consistency_scores if s > 0.7)}")
         self.log(f"低分样本(<0.4)数量: {sum(1 for s in consistency_scores if s < 0.4)}")
         self.log(f"事实一致性平均得分: {avg_consistency:.4f}")
-        self.log("======== FactualConsistency 计算结束 ========\n")
         
         return {"factual_consistency": avg_consistency}, consistency_scores
 
@@ -251,7 +247,6 @@ class ComprehensiveAnswerMetric(BaseMetric):
         Returns:
             Tuple[Dict[str, float], List[float]]: 总体得分和每个样本的得分
         """
-        self.log("\n======== AnswerComprehensiveness 计算日志 ========")
         self.log(f"样本总数: {len(data.samples) if hasattr(data, 'samples') else 0}")
         
         if not self.llm:
@@ -322,7 +317,6 @@ class ComprehensiveAnswerMetric(BaseMetric):
         self.log(f"高分样本(>0.7)数量: {sum(1 for s in comprehensiveness_scores if s > 0.7)}")
         self.log(f"低分样本(<0.4)数量: {sum(1 for s in comprehensiveness_scores if s < 0.4)}")
         self.log(f"回答全面性平均得分: {avg_comprehensiveness:.4f}")
-        self.log("======== AnswerComprehensiveness 计算结束 ========\n")
         
         return {"answer_comprehensiveness": avg_comprehensiveness}, comprehensiveness_scores
 
@@ -357,7 +351,6 @@ class LLMGraphRagEvaluator(BaseMetric):
         Returns:
             Tuple[Dict[str, float], List[Dict[str, float]]]: 总体得分和每个样本的得分
         """
-        self.log("\n======== LLMGraphRagEvaluator 计算日志 ========")
         self.log(f"样本总数: {len(data.samples) if hasattr(data, 'samples') else 0}")
         
         if not self.llm:
@@ -437,7 +430,6 @@ class LLMGraphRagEvaluator(BaseMetric):
         for aspect, weight in self.aspect_weights.items():
             self.log(f"  {aspect}: {weight:.2f}")
         
-        self.log("======== LLMGraphRagEvaluator 计算结束 ========\n")
         
         return avg_scores, all_scores
     

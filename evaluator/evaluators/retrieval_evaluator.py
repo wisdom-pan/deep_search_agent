@@ -18,7 +18,6 @@ class GraphRAGRetrievalEvaluator(BaseEvaluator):
     
     def evaluate(self, data: RetrievalEvaluationData) -> Dict[str, float]:
         """执行评估"""
-        self.log("\n======== 开始评估检索性能 ========")
         
         # 打印样本信息
         self.log(f"样本总数: {len(data.samples)}")
@@ -126,7 +125,6 @@ class GraphRAGRetrievalEvaluator(BaseEvaluator):
         for metric, score in result_dict.items():
             self.log(f"  {metric}: {score:.4f}")
         
-        self.log("======== 检索性能评估结束 ========\n")
         
         # 保存评估结果
         if self.save_metric_flag:

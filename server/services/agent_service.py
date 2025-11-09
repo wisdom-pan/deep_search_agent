@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from typing import Dict, List
 import threading
 from langchain_core.messages import RemoveMessage, AIMessage, HumanMessage, ToolMessage
@@ -10,11 +11,14 @@ class AgentManager:
     def __init__(self):
         """初始化Agent管理器"""
         # 导入各种Agent
+=======
+>>>>>>> 6a74cbb (解决模块冲突问题)
         from graphrag_agent.agents.graph_agent import GraphAgent
         from graphrag_agent.agents.hybrid_agent import HybridAgent
         from graphrag_agent.agents.naive_rag_agent import NaiveRagAgent
         from graphrag_agent.agents.deep_research_agent import DeepResearchAgent
         from graphrag_agent.agents.fusion_agent import FusionGraphRAGAgent 
+<<<<<<< HEAD
         
         # 初始化Agent类
         self.agent_classes = {
@@ -209,3 +213,5 @@ def format_execution_log(log: List[Dict]) -> List[Dict]:
         
         formatted_log.append(formatted_entry)
     return formatted_log
+=======
+>>>>>>> 6a74cbb (解决模块冲突问题)

@@ -1,7 +1,5 @@
 services:
-  # ========================================
   # Neo4j 图数据库服务
-  # ========================================
   neo4j:
     image: neo4j:5.22.0
     container_name: graphrag-neo4j
@@ -30,9 +28,7 @@ services:
       start_period: 30s
 
 
-  # ========================================
   # 知识图谱初始化服务
-  # ========================================
   init-kg:
     build:
       context: .
@@ -65,9 +61,7 @@ services:
         python -m graphrag_agent.integrations.build.main
       "
 
-  # ========================================
   # 后端 API 服务
-  # ========================================
   backend:
     build:
       context: .
@@ -99,9 +93,7 @@ services:
       retries: 3
       start_period: 60s
 
-  # ========================================
   # 前端 Streamlit 服务
-  # ========================================
   frontend:
     build:
       context: .
@@ -121,9 +113,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
-# ========================================
 # 数据卷定义
-# ========================================
 volumes:
   neo4j_data:
     driver: local
@@ -134,9 +124,7 @@ volumes:
   # oneapi_data:  # 仅在启用 one-api 时需要
   #   driver: local
 
-# ========================================
 # 网络配置
-# ========================================
 networks:
   default:
     name: graphrag-network

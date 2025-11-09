@@ -14,7 +14,6 @@ class CommunityRelevanceMetric(BaseMetric):
     
     def calculate_metric(self, data) -> Tuple[Dict[str, float], List[float]]:
         """计算社区相关性"""
-        self.log("\n======== CommunityRelevance 计算日志 ========")
         
         relevance_scores = []
         
@@ -190,7 +189,6 @@ class CommunityRelevanceMetric(BaseMetric):
         avg_relevance = sum(relevance_scores) / len(relevance_scores) if relevance_scores else 0.0
         
         self.log(f"\n平均社区相关性得分: {avg_relevance:.4f}")
-        self.log("======== CommunityRelevance 计算结束 ========\n")
         
         return {"community_relevance": avg_relevance}, relevance_scores
     
@@ -255,7 +253,6 @@ class SubgraphQualityMetric(BaseMetric):
     def calculate_metric(self, data) -> Tuple[Dict[str, float], List[float]]:
         """计算子图质量"""
         
-        self.log("\n======== SubgraphQuality 计算日志 ========")
         
         quality_scores = []
         
@@ -379,7 +376,6 @@ class SubgraphQualityMetric(BaseMetric):
         
         avg_quality = sum(quality_scores) / len(quality_scores) if quality_scores else 0.0
         self.log(f"\n平均子图质量: {avg_quality:.4f}")
-        self.log("======== SubgraphQuality 计算结束 ========\n")
         
         return {"subgraph_quality": avg_quality}, quality_scores
     
@@ -644,7 +640,6 @@ class GraphCoverageMetric(BaseMetric):
     def calculate_metric(self, data) -> Tuple[Dict[str, float], List[float]]:
         """计算图覆盖率"""
         
-        self.log("\n======== GraphCoverage 计算日志 ========")
         
         coverage_scores = []
         
@@ -698,7 +693,6 @@ class GraphCoverageMetric(BaseMetric):
         
         avg_coverage = sum(coverage_scores) / len(coverage_scores) if coverage_scores else 0.0
         self.log(f"\n平均图覆盖率: {avg_coverage:.4f}")
-        self.log("======== GraphCoverage 计算结束 ========\n")
         
         return {"graph_coverage": avg_coverage}, coverage_scores
     
@@ -1018,7 +1012,6 @@ class EntityCoverageMetric(BaseMetric):
     def calculate_metric(self, data) -> Tuple[Dict[str, float], List[float]]:
         """计算实体覆盖率"""
         
-        self.log("\n======== EntityCoverage 计算日志 ========")
         
         coverage_scores = []
         
@@ -1057,7 +1050,6 @@ class EntityCoverageMetric(BaseMetric):
         
         avg_coverage = sum(coverage_scores) / len(coverage_scores) if coverage_scores else 0.0
         self.log(f"\n平均实体覆盖率: {avg_coverage:.4f}")
-        self.log("======== EntityCoverage 计算结束 ========\n")
         
         return {"entity_coverage": avg_coverage}, coverage_scores
     
@@ -1311,7 +1303,6 @@ class RelationshipUtilizationMetric(BaseMetric):
     def calculate_metric(self, data) -> Tuple[Dict[str, float], List[float]]:
         """计算关系利用率"""
         
-        self.log("\n======== RelationshipUtilization 计算日志 ========")
         
         utilization_scores = []
         
@@ -1448,7 +1439,6 @@ class RelationshipUtilizationMetric(BaseMetric):
         
         avg_utilization = sum(utilization_scores) / len(utilization_scores) if utilization_scores else 0.3
         self.log(f"\n平均关系利用率: {avg_utilization:.4f}")
-        self.log("======== RelationshipUtilization 计算结束 ========\n")
         
         return {"relationship_utilization": avg_utilization}, utilization_scores
     

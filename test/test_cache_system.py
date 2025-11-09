@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import unittest
 import tempfile
 import shutil
@@ -220,3 +221,6 @@ class TestCacheSystem(unittest.TestCase):
 if __name__ == '__main__':
     # 运行测试
     unittest.main(verbosity=2)
+=======
+from graphrag_agent.cache_manager import CacheManager, ContextAwareCacheKeyStrategy, SimpleCacheKeyStrategy
+>>>>>>> 6a74cbb (解决模块冲突问题)

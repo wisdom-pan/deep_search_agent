@@ -19,7 +19,6 @@ class AnswerEvaluator(BaseEvaluator):
         """
         执行评估 - 修复版本，解决 LLM 评估器的字典类型问题
         """
-        self.log("\n======== 开始评估答案质量 ========")
         self.log(f"样本总数: {len(data.samples)}")
         self.log(f"使用的评估指标: {', '.join(self.metrics)}")
         
@@ -56,7 +55,6 @@ class AnswerEvaluator(BaseEvaluator):
         for metric, score in result_dict.items():
             self.log(f"  {metric}: {score:.4f}")
         
-        self.log("======== 答案质量评估结束 ========\n")
         
         # 保存评估结果
         if self.save_metric_flag:

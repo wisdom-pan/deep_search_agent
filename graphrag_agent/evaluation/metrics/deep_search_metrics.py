@@ -13,7 +13,6 @@ class ReasoningCoherence(BaseMetric):
     
     def calculate_metric(self, data) -> Tuple[Dict[str, float], List[float]]:
         """计算推理连贯性得分"""
-        self.log("\n======== ReasoningCoherence 计算日志 ========")
         self.log(f"样本总数: {len(data.samples) if hasattr(data, 'samples') else 0}")
         
         coherence_scores = []
@@ -162,7 +161,6 @@ class ReasoningCoherence(BaseMetric):
         avg_coherence = sum(coherence_scores) / len(coherence_scores) if coherence_scores else 0.0
         
         self.log(f"\n推理连贯性平均得分: {avg_coherence:.4f}")
-        self.log("======== ReasoningCoherence 计算结束 ========\n")
         
         return {"reasoning_coherence": avg_coherence}, coherence_scores
 
@@ -178,7 +176,6 @@ class ReasoningDepth(BaseMetric):
     
     def calculate_metric(self, data) -> Tuple[Dict[str, float], List[float]]:
         """计算推理深度得分"""
-        self.log("\n======== ReasoningDepth 计算日志 ========")
         self.log(f"样本总数: {len(data.samples) if hasattr(data, 'samples') else 0}")
         
         depth_scores = []
@@ -327,7 +324,6 @@ class ReasoningDepth(BaseMetric):
         avg_depth = sum(depth_scores) / len(depth_scores) if depth_scores else 0.0
         
         self.log(f"\n推理深度平均得分: {avg_depth:.4f}")
-        self.log("======== ReasoningDepth 计算结束 ========\n")
         
         return {"reasoning_depth": avg_depth}, depth_scores
 
@@ -343,7 +339,6 @@ class IterativeImprovementMetric(BaseMetric):
     
     def calculate_metric(self, data) -> Tuple[Dict[str, float], List[float]]:
         """计算迭代改进得分"""
-        self.log("\n======== IterativeImprovement 计算日志 ========")
         self.log(f"样本总数: {len(data.samples) if hasattr(data, 'samples') else 0}")
         
         improvement_scores = []
@@ -506,7 +501,6 @@ class IterativeImprovementMetric(BaseMetric):
         avg_improvement = sum(improvement_scores) / len(improvement_scores) if improvement_scores else 0.0
         
         self.log(f"\n迭代改进平均得分: {avg_improvement:.4f}")
-        self.log("======== IterativeImprovement 计算结束 ========\n")
         
         return {"iterative_improvement": avg_improvement}, improvement_scores
 
@@ -522,7 +516,6 @@ class KnowledgeGraphUtilizationMetric(BaseMetric):
     
     def calculate_metric(self, data) -> Tuple[Dict[str, float], List[float]]:
         """计算知识图谱利用率得分"""
-        self.log("\n======== KnowledgeGraphUtilization 计算日志 ========")
         self.log(f"样本总数: {len(data.samples) if hasattr(data, 'samples') else 0}")
         
         utilization_scores = []
@@ -694,6 +687,5 @@ class KnowledgeGraphUtilizationMetric(BaseMetric):
         avg_utilization = sum(utilization_scores) / len(utilization_scores) if utilization_scores else 0.0
         
         self.log(f"\n知识图谱利用率平均得分: {avg_utilization:.4f}")
-        self.log("======== KnowledgeGraphUtilization 计算结束 ========\n")
         
         return {"knowledge_graph_utilization": avg_utilization}, utilization_scores

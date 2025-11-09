@@ -4,7 +4,7 @@ import time
 import concurrent.futures
 from typing import List, Dict, Any, Optional, Tuple
 
-from langchain.prompts import (
+from langchain_core.prompts import (
     ChatPromptTemplate,
     MessagesPlaceholder,
     HumanMessagePromptTemplate,

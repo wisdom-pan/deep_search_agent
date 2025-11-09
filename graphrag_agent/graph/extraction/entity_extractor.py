@@ -3,7 +3,7 @@ import os
 import pickle
 import concurrent.futures
 from typing import List, Tuple, Optional
-from langchain.prompts import (
+from langchain_core.prompts import (
     ChatPromptTemplate,
     HumanMessagePromptTemplate,
     MessagesPlaceholder,

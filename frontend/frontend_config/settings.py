@@ -37,8 +37,9 @@ DEFAULT_USE_DEEPER_TOOL = _get_env_bool("FRONTEND_USE_DEEPER_TOOL", True)  # 深
 DEFAULT_USE_STREAM = _get_env_bool("FRONTEND_USE_STREAM", True)  # 是否默认使用流式输出
 DEFAULT_CHAIN_EXPLORATION = _get_env_bool("FRONTEND_USE_CHAIN_EXPLORATION", True)  # 链式探索开关
 
-# 示例问题直接复用核心配置，保持前后端一致
+# 示例问题
 examples = eg
+<<<<<<< HEAD
 
 # ===== 知识图谱展示参数 =====
 
@@ -71,3 +72,5 @@ DEFAULT_KG_SETTINGS = {
     "spring_length": _get_env_int("KG_SPRING_LENGTH", 150),
     "gravity": _get_env_int("KG_GRAVITY", -5000),
 }
+=======
+>>>>>>> 6a74cbb (解决模块冲突问题)

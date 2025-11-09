@@ -45,7 +45,6 @@ class ExactMatch(BaseMetric):
         Returns:
             Tuple[Dict[str, float], List[float]]: 总体得分和每个样本的得分
         """
-        self.log("======== ExactMatch 计算日志 ========")
         self.log(f"样本总数: {len(data.samples) if hasattr(data, 'samples') else 0}")
         
         golden_answers = data.golden_answers
@@ -116,7 +115,6 @@ class ExactMatch(BaseMetric):
         self.log(f"\n样本总数: {len(metric_score_list)}")
         self.log(f"匹配样本数: {sum(1 for s in metric_score_list if s > 0.8)}")
         self.log(f"精确匹配平均得分: {em_score:.4f}")
-        self.log("======== ExactMatch 计算结束 ========\n")
         
         return {"em": em_score}, metric_score_list
     
@@ -176,7 +174,6 @@ class F1Score(BaseMetric):
         Returns:
             Tuple[Dict[str, float], List[float]]: 总体得分和每个样本的得分
         """
-        self.log("\n======== F1Score 计算日志 ========")
         self.log(f"样本总数: {len(data.samples) if hasattr(data, 'samples') else 0}")
         
         golden_answers = data.golden_answers
@@ -281,6 +278,5 @@ class F1Score(BaseMetric):
         self.log(f"\n样本总数: {len(f1_scores)}")
         self.log(f"F1得分大于0.5的样本数: {sum(1 for s in f1_scores if s > 0.5)}")
         self.log(f"F1平均得分: {avg_f1:.4f}")
-        self.log("======== F1Score 计算结束 ========\n")
         
         return {"f1": avg_f1}, f1_scores

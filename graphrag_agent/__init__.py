@@ -11,14 +11,12 @@ GraphRAG Agent - 基于图的综合RAG系统
 
 __version__ = "0.1.0"
 
-# ============ 1. 文档处理模块 ============
 from graphrag_agent.pipelines.ingestion import (
     DocumentProcessor,
     FileReader,
     ChineseTextChunker
 )
 
-# ============ 2. 图谱构建模块 ============
 # 核心组件
 from graphrag_agent.graph import (
     GraphConnectionManager,
@@ -49,7 +47,6 @@ from graphrag_agent.community import (
     CommunitySummarizerFactory
 )
 
-# ============ 3. 搜索模块 ============
 # 基础搜索
 from graphrag_agent.search import (
     LocalSearch,
@@ -65,11 +62,9 @@ from graphrag_agent.search import (
     DeepResearchTool
 )
 
-# ============ 4. Agent 模块 ============
 # 注意：需要时从 graphrag_agent.agents 导入具体的 Agent 类
 # 例如：from graphrag_agent.agents import FusionGraphRAGAgent
 
-# ============ 5. 缓存管理模块 ============
 from graphrag_agent.cache_manager import (
     CacheManager,
     # 存储后端
@@ -84,7 +79,6 @@ from graphrag_agent.cache_manager import (
     VectorSimilarityMatcher
 )
 
-# ============ 6. 评估模块 ============
 from graphrag_agent.evaluation.core import (
     BaseMetric,
     BaseEvaluator,
@@ -100,7 +94,6 @@ from graphrag_agent.evaluation.evaluators import (
     CompositeGraphRAGEvaluator
 )
 
-# ============ 7. 配置模块 ============
 # 注意：配置通常在 graphrag_agent.config.settings 中设置
 # 例如：from graphrag_agent.config.settings import theme, entity_types
 

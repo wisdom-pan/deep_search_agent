@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import asyncio
 import json
 from graphrag_agent.agents.deep_research_agent import DeepResearchAgent
@@ -117,3 +118,6 @@ async def run_advanced_tests():
 
 if __name__ == "__main__":
     asyncio.run(run_advanced_tests())
+=======
+from graphrag_agent.agents.deep_research_agent import DeepResearchAgent
+>>>>>>> 6a74cbb (解决模块冲突问题)

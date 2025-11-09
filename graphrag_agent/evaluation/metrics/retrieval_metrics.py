@@ -25,7 +25,6 @@ class RetrievalPrecision(BaseMetric):
         Returns:
             Tuple[Dict[str, float], List[float]]: 总体得分和每个样本的得分
         """
-        self.log("\n======== RetrievalPrecision 计算日志 ========")
         self.log(f"样本总数: {len(data.samples) if hasattr(data, 'samples') else 0}")
         self.log(f"LLM可用: {'是' if self.llm else '否'}")
         
@@ -192,7 +191,6 @@ class RetrievalUtilization(BaseMetric):
         Returns:
             Tuple[Dict[str, float], List[float]]: 总体得分和每个样本的得分
         """
-        self.log("\n======== RetrievalUtilization 计算日志 ========")
         self.log(f"样本总数: {len(data.samples) if hasattr(data, 'samples') else 0}")
         self.log(f"LLM可用: {'是' if self.llm else '否'}")
         
@@ -374,7 +372,6 @@ class RetrievalLatency(BaseMetric):
         Returns:
             Tuple[Dict[str, float], List[float]]: 总体得分和每个样本的得分
         """
-        self.log("\n======== RetrievalLatency 计算日志 ========")
         
         latency_scores = []
         
@@ -396,7 +393,6 @@ class RetrievalLatency(BaseMetric):
         avg_latency = sum(latency_scores) / len(latency_scores) if latency_scores else 0.0
         
         self.log(f"\n检索平均延迟: {avg_latency:.4f}秒")
-        self.log("======== RetrievalLatency 计算结束 ========\n")
         
         return {"retrieval_latency": avg_latency}, latency_scores
 
@@ -420,7 +416,6 @@ class ChunkUtilization(BaseMetric):
         Returns:
             Tuple[Dict[str, float], List[float]]: 总体得分和每个样本的得分
         """
-        self.log("\n======== ChunkUtilization 计算日志 ========")
         
         chunk_scores = []
         
@@ -555,7 +550,6 @@ class ChunkUtilization(BaseMetric):
         avg_chunk_utilization = sum(chunk_scores) / len(chunk_scores) if chunk_scores else 0.0
         
         self.log(f"\n文本块平均利用率: {avg_chunk_utilization:.4f}")
-        self.log("======== ChunkUtilization 计算结束 ========\n")
         
         return {"chunk_utilization": avg_chunk_utilization}, chunk_scores
     

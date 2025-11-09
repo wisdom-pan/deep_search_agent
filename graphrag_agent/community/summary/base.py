@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List, Dict
 from langchain_community.graphs import Neo4jGraph
-from langchain.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from graphrag_agent.models.get_models import get_llm_model
 import concurrent.futures
