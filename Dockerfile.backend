@@ -19,6 +19,9 @@ RUN pip install --no-cache-dir --upgrade pip && \
 # 复制应用代码
 COPY . .
 
+# 以开发模式安装 graphrag_agent 包
+RUN pip install -e .
+
 # 确保cache目录存在
 RUN mkdir -p cache
 
