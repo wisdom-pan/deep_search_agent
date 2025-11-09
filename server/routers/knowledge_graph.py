@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 from fastapi import APIRouter, HTTPException
 from typing import Optional
 import traceback
 from services.kg_service import (
-=======
-from server.services.kg_service import (
->>>>>>> 6a74cbb (解决模块冲突问题)
     get_knowledge_graph, 
     extract_kg_from_message, 
     get_chunks,
@@ -17,7 +13,6 @@ from server.services.kg_service import (
     get_entity_influence,
     get_simplified_community,
 )
-<<<<<<< HEAD
 from server_config.database import get_db_manager
 from models.schemas import (ReasoningRequest, EntityData, EntityDeleteData, EntitySearchFilter, EntityUpdateData,
                             RelationData, RelationDeleteData, RelationSearchFilter, RelationUpdateData)
@@ -806,9 +801,3 @@ def delete_relation(relation_data: RelationDeleteData):
         print(e)
         traceback.print_exc()
         return {"success": False, "message": f"删除关系失败: {str(e)}"}
-=======
-from server.server_config.database import get_db_manager
-from server.models.schemas import (ReasoningRequest, EntityData, EntityDeleteData, EntitySearchFilter, EntityUpdateData,
-from server_config.database import get_db_manager
-from server.models.schemas import (ReasoningRequest, EntityData, EntityDeleteData, EntitySearchFilter, EntityUpdateData,
->>>>>>> 6a74cbb (解决模块冲突问题)

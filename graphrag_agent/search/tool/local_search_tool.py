@@ -2,10 +2,10 @@ from typing import List, Dict, Any
 import time
 import json
 from langsmith import traceable
-from langchain_classic.chains.combine_documents import create_stuff_documents_chain
+from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_classic.chains import create_history_aware_retriever, create_retrieval_chain
-from langchain_core.tools import tool
+from langchain.chains import create_history_aware_retriever, create_retrieval_chain
+from langchain.tools.retriever import create_retriever_tool
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.tools import BaseTool
 

@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 import time
 from datetime import datetime
 
-=======
->>>>>>> 6a74cbb (解决模块冲突问题)
 from graphrag_agent.agents.deep_research_agent import DeepResearchAgent
 from graphrag_agent.agents.naive_rag_agent import NaiveRagAgent
 from graphrag_agent.agents.graph_agent import GraphAgent
@@ -13,7 +10,6 @@ from graphrag_agent.agents.fusion_agent import FusionGraphRAGAgent
 TEST_CONFIG = {
     "queries": [
         "优秀学生的申请条件是什么？",
-<<<<<<< HEAD
         # "学业奖学金有多少钱？",
         # "大学英语考试的标准是什么？",
         # "小明同学旷课了30学时，又私藏了吹风机，他还殴打了同学，他还能评选国家奖学金吗？",
@@ -131,11 +127,3 @@ if __name__ == "__main__":
     print(f"开始测试: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     run_tests()
     print(f"测试完成: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-=======
-        "学业奖学金有多少钱？",
-        "大学英语考试的标准是什么？",
-        "小明同学旷课了30学时，又私藏了吹风机，他还殴打了同学，他还能评选国家奖学金吗？",
-        # "学业奖学金有多少钱？",
-        # "大学英语考试的标准是什么？",
-        # "小明同学旷课了30学时，又私藏了吹风机，他还殴打了同学，他还能评选国家奖学金吗？",
->>>>>>> 6a74cbb (解决模块冲突问题)

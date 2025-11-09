@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import re
 import traceback
 from typing import Dict, List, Any
@@ -1604,7 +1603,3 @@ def get_simplified_community(driver, entity_id, max_depth=2):
         print(f"简化社区检测失败: {str(e)}")
         traceback.print_exc()
         return {"nodes": [], "links": [], "error": str(e)}
-=======
-from server_config.database import get_db_manager
-from utils.keywords import extract_smart_keywords
->>>>>>> 6a74cbb (解决模块冲突问题)

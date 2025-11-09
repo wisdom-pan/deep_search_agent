@@ -1,14 +1,5 @@
-<<<<<<< HEAD
 import streamlit as st
 import uuid
-<<<<<<< HEAD
-<<<<<<< HEAD
-from frontend_config.settings import DEFAULT_KG_SETTINGS
-=======
-=======
->>>>>>> 4296b7c (Update start.md)
-=======
->>>>>>> 6a74cbb (解决模块冲突问题)
 from frontend_config.settings import (
     DEFAULT_KG_SETTINGS,
     DEFAULT_AGENT_TYPE,
@@ -18,13 +9,6 @@ from frontend_config.settings import (
     DEFAULT_USE_STREAM,
     DEFAULT_CHAIN_EXPLORATION,
 )
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 4296b7c (Update start.md)
-=======
->>>>>>> 4296b7c (Update start.md)
-=======
->>>>>>> 6a74cbb (解决模块冲突问题)
 
 def init_session_state():
     """初始化会话状态变量"""
@@ -33,31 +17,6 @@ def init_session_state():
     if 'messages' not in st.session_state:
         st.session_state.messages = []
     if 'debug_mode' not in st.session_state:
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 6a74cbb (解决模块冲突问题)
-        st.session_state.debug_mode = False
-    if 'execution_log' not in st.session_state:
-        st.session_state.execution_log = []
-    if 'agent_type' not in st.session_state:
-        st.session_state.agent_type = "naive_rag_agent"  # 默认使用naive_rag_agent
-    if 'show_thinking' not in st.session_state:
-        st.session_state.show_thinking = True  # 默认显示思考过程
-    if 'use_deeper_tool' not in st.session_state:
-        st.session_state.use_deeper_tool = True  # 默认使用增强版研究工具
-    
-    # 流式响应设置 - 默认启用，但调试模式下自动禁用
-    if 'use_stream' not in st.session_state:
-        st.session_state.use_stream = True
-    elif st.session_state.debug_mode:
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 4296b7c (Update start.md)
-=======
->>>>>>> 6a74cbb (解决模块冲突问题)
         st.session_state.debug_mode = DEFAULT_DEBUG_MODE
     if 'execution_log' not in st.session_state:
         st.session_state.execution_log = []
@@ -72,13 +31,6 @@ def init_session_state():
     if 'use_stream' not in st.session_state:
         st.session_state.use_stream = DEFAULT_USE_STREAM
     if st.session_state.debug_mode:
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 4296b7c (Update start.md)
-=======
->>>>>>> 4296b7c (Update start.md)
-=======
->>>>>>> 6a74cbb (解决模块冲突问题)
         # 确保调试模式下禁用流式响应
         st.session_state.use_stream = False
         
@@ -107,20 +59,7 @@ def init_session_state():
     if 'relation_to_update' not in st.session_state:
         st.session_state.relation_to_update = None
     if 'use_chain_exploration' not in st.session_state:
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 6a74cbb (解决模块冲突问题)
-        st.session_state.use_chain_exploration = True
         st.session_state.use_chain_exploration = DEFAULT_CHAIN_EXPLORATION
-<<<<<<< HEAD
->>>>>>> 4296b7c (Update start.md)
-=======
-        st.session_state.use_chain_exploration = DEFAULT_CHAIN_EXPLORATION
->>>>>>> 4296b7c (Update start.md)
-=======
->>>>>>> 6a74cbb (解决模块冲突问题)
 
     if 'cache' not in st.session_state:
         st.session_state.cache = {
@@ -128,17 +67,4 @@ def init_session_state():
             'knowledge_graphs': {},  # 知识图谱缓存
             'vector_search_results': {},  # 向量搜索结果缓存
             'api_responses': {},  # API响应缓存
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 6a74cbb (解决模块冲突问题)
         }
-        }
-<<<<<<< HEAD
->>>>>>> 4296b7c (Update start.md)
-=======
-        }
->>>>>>> 4296b7c (Update start.md)
-=======
->>>>>>> 6a74cbb (解决模块冲突问题)

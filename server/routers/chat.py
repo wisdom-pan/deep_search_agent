@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from fastapi import APIRouter, Request
 from fastapi.responses import StreamingResponse
 import json
@@ -203,9 +202,3 @@ async def clear_chat(request: ClearRequest):
     """
     result = agent_manager.clear_history(request.session_id)
     return ClearResponse(**result)
-=======
-from server.models.schemas import ChatRequest, ChatResponse, ClearRequest, ClearResponse
-from server.services.chat_service import process_chat, process_chat_stream
-from server.services.agent_service import agent_manager, format_execution_log
-from server.utils.performance import measure_performance
->>>>>>> 6a74cbb (解决模块冲突问题)

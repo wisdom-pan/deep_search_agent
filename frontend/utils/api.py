@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import time
 import uuid
 import requests
@@ -10,15 +9,7 @@ import streamlit as st
 from typing import Dict, Callable
 from frontend_config.settings import API_URL
 from utils.performance import monitor_performance
-<<<<<<< HEAD
-<<<<<<< HEAD
-from config.settings import community_algorithm
-=======
 from graphrag_agent.config.settings import community_algorithm
->>>>>>> 4296b7c (Update start.md)
-=======
-from graphrag_agent.config.settings import community_algorithm
->>>>>>> 4296b7c (Update start.md)
 
 @monitor_performance(endpoint="send_message")
 def send_message(message: str) -> Dict:
@@ -781,6 +772,3 @@ def get_content_async(chunk_id, callback):
 def shutdown_batch_processor():
     if 'api_batch_processor' in st.session_state:
         st.session_state.api_batch_processor.shutdown()
-=======
-from graphrag_agent.config.settings import community_algorithm
->>>>>>> 6a74cbb (解决模块冲突问题)

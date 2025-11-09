@@ -1,16 +1,12 @@
-<<<<<<< HEAD
 import asyncio
 import time
 from datetime import datetime
 
-=======
->>>>>>> 6a74cbb (解决模块冲突问题)
 from graphrag_agent.agents.deep_research_agent import DeepResearchAgent
 from graphrag_agent.agents.naive_rag_agent import NaiveRagAgent
 from graphrag_agent.agents.graph_agent import GraphAgent
 from graphrag_agent.agents.hybrid_agent import HybridAgent
 from graphrag_agent.agents.fusion_agent import FusionGraphRAGAgent
-<<<<<<< HEAD
 
 
 TEST_CONFIG = {
@@ -202,5 +198,3 @@ if __name__ == "__main__":
     print(f"开始测试: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     asyncio.run(run_stream_tests())
     print(f"测试完成: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-=======
->>>>>>> 6a74cbb (解决模块冲突问题)
