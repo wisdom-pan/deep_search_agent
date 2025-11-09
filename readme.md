@@ -34,6 +34,27 @@
 - Docker >= 20.10
 - Docker Compose >= 1.29
 
+**内存配置要求**（重要）：
+- Docker Desktop 内存限制至少 **16GB**
+- 设置方法：
+  1. 打开 Docker Desktop → Settings → Resources → Advanced
+  2. 调整 Memory 为 16GB 或更高
+  3. 点击 "Apply & Restart"
+
+**高级配置（可选）**：
+在 macOS 上可直接编辑配置文件（需要重启Docker Desktop生效）：
+```bash
+mkdir -p ~/Library/Group\ Containers/group.com.docker/
+cat > ~/Library/Group\ Containers/group.com.docker/settings.json << 'EOF'
+{
+  "cpus": 8,
+  "memoryMiB": 16384,
+  "swapMiB": 4096,
+  "diskSizeMiB": 204800
+}
+EOF
+```
+
 ### 2. 配置环境变量
 
 ```bash
@@ -253,12 +274,36 @@ docker-compose up -d neo4j
 
 ### Q3: 内存不足
 
-**现象**: 容器因 OOM 被杀死
+**现象**: 容器因 OOM 被杀死（退出码137）
 
 **解决方案**:
-1. 增加系统内存
-2. 调整 Docker 内存限制
-3. 调整 Neo4j 内存配置（在 docker-compose.yaml 中修改 `NEO4J_dbms_memory_heap_max__size`）
+1. **增加Docker内存限制**（推荐>=16GB）
+   - Docker Desktop → Settings → Resources → Advanced → Memory: 16GB+
+   - 或直接编辑配置文件（macOS）：
+     ```bash
+     mkdir -p ~/Library/Group\ Containers/group.com.docker/
+     cat > ~/Library/Group\ Containers/group.com.docker/settings.json << 'EOF'
+     {
+       "cpus": 8,
+       "memoryMiB": 16384,
+       "swapMiB": 4096,
+       "diskSizeMiB": 204800
+     }
+     EOF
+     ```
+   - 重启 Docker Desktop 使配置生效
+
+2. **调整 Neo4j 内存配置**（编辑 docker-compose.yaml）
+   - 降低 `NEO4J_dbms_memory_heap_max__size`
+   - 降低 `NEO4J_dbms_memory_pagecache_size`
+   - 降低 `NEO4J_dbms_memory_gds_early释放`
+
+3. **检查Docker内存使用**
+   ```bash
+   docker system info | grep Memory
+   ```
+
+⚠️ **注意**: 修改Docker配置后需要重启Docker Desktop才能生效
 
 ### Q4: API 调用失败
 
@@ -371,3 +416,10 @@ docker-compose logs -f <service_name>
 # 检查服务健康状态
 docker-compose ps
 ```
+
+
+
+  1. 打开Docker Desktop
+  2. 点击⚙️ Settings → Resources
+  3. 在"Memory"中增加内存（建议5-6GB）
+  4. 点击"Apply & Restart"
