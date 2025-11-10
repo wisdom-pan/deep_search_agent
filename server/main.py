@@ -11,6 +11,13 @@ app = FastAPI(title="知识图谱问答系统", description="基于知识图谱�
 # 添加路由
 app.include_router(api_router)
 
+# 健康检查端点
+@app.get("/health")
+def health_check():
+    """健康检查端点"""
+    return {"status": "healthy", "message": "服务运行正常"}
+
+
 # 获取数据库连接
 db_manager = get_db_manager()
 driver = db_manager.driver

@@ -419,7 +419,3 @@ docker-compose ps
 
 
 
-  1. 打开Docker Desktop
-  2. 点击⚙️ Settings → Resources
-  3. 在"Memory"中增加内存（建议5-6GB）
-  4. 点击"Apply & Restart"
