@@ -30,11 +30,15 @@ def get_llm_model():
 def get_llm_model_with_streaming():
     """获取支持流式输出的 LLM 模型"""
     config = {k: v for k, v in OPENAI_LLM_CONFIG.items() if v is not None and v != ""}
-    
+
     # LangChain 1.0+ 中，流式处理使用 callbacks 参数
     config["streaming"] = True
-    
+
     return ChatOpenAI(**config)
+
+
+# 别名函数，向后兼容
+get_stream_llm_model = get_llm_model_with_streaming
 
 
 def count_tokens(text):
